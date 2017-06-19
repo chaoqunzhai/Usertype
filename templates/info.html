@@ -36,6 +36,8 @@
                                         {{ row2 }}
                                         {% if row2.errors.0 %}
                                             <a class="btn btn-warning" id="errors">{{ row2.errors.0 }}</a>
+                                        {% elif  datetime_errors %}
+                                            <a class="btn btn-warning" id="errors">{{ datetime_errors }}</a>
                                         {% endif %}
                                     </div>
                                 </div>
