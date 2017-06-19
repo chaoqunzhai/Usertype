@@ -26,17 +26,25 @@ class Webinfo(View):
             user_datatime = request.POST.get('datetime')
             obj = models.User.objects.filter().values('id','token')
             work_dict = {'datetime': user_datatime, 'content': user_content}
+            token_list=[]
+            # for i in obj:
+            #     token_list.append(i)
+            #     print('111111', i['id'], i['token'], token_list)
             try:
                 for i in obj:
-                    if str(i['token']) == user_token:
+                    if user_token == str(i['token']):
                         work_dict['uid_id'] = i['id']
                         models.Works.objects.create(**work_dict)
-                        print('yes',work_dict)
-                        return render(request,'suceess.html')
+                        print('insert db  usertoken',work_dict)
+                        return render(request, 'suceess.html')
                     else:
+                        print('else---',i['token'],user_token)
                         token_error = 'token认证错误'
-                        return render(request, 'info.html',
-                                      {'userinform': userinform, 'workFrom': workFrom, 'status': status_tag,'token_error':token_error})
+
+
+                return render(request, 'info.html',
+                                      {'userinform': userinform, 'workFrom': workFrom, 'status': status_tag,
+                                       'token_error': token_error})
             except Exception as e:
                 datetime_errors = '时间重叠'
                 return render(request, 'info.html',
@@ -45,4 +53,3 @@ class Webinfo(View):
         else:
             print('userinform:%s,workFrom:%s' %(userinform.errors.as_json,workFrom.errors.as_json))
             return render(request, 'info.html', {'userinform': userinform, 'workFrom': workFrom, 'status': status_tag})
-        return render(request, 'info.html', {'userinform': userinform, 'workFrom': workFrom,'status':status_tag,'token_error':token_error})
