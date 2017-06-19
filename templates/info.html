@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block info %}
+    <div class="col-lg-9 table_info">{% csrf_token %}
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="pad-all bord-btm text-thin text-primary">反馈表单</h3>
+                <hr/>
+                <h5 class="text-right" style="color: orangered">*请认真填写!</h5>
+                <div id="survery_list" class="panel-group accordion">
+                    <form method="post" action="info.html" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="bord-no pad-top">
+                            <div class=" pad-hor text-lg">
+                                {% for row1 in userinform %}
+                                    <label class="text-danger" id="{{ row1.name }}">{{ row1.label }}</label>
+                                    {{ row1 }}
+                                    {% if row1.errors.0 %}
+                                        <a class="btn btn-warning " id="token_error">{{ row1.errors.0 }}</a>
+                                    {% elif  token_error%}
+                                        <a class="btn btn-warning " id="token_error">{{ token_error }}</a>
+                                    {% endif %}
+
+                                    <hr/>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="bord-no pad-top">
+                            {% for row2 in workFrom %}
+                                <div class="text-semibold pad-hor text-lg">
+                                    <a href="#demo-gen-faq1" data-toggle="collapse"
+                                       data-parent="#demo-gen-faq" class="text-danger" style="font-weight:700">{{ row2.label }}</a>
+                                </div>
+                                <div anwser_type="suggestion" question_id="9" id="demo-gen-faq1" class="collapse in">
+                                    <div class="pad-all">
+                                        {{ row2 }}
+                                        {% if row2.errors.0 %}
+                                            <a class="btn btn-warning" id="errors">{{ row2.errors.0 }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="text-center">
+                            <button style="margin-left: -30px;font-size: 18px" class="btn btn-success btn-rounded btn-labeled fa fa-check">提交</button>
+                            <div class = "info_body_status hide" >
+                                <span>{{ status }}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            <hr class="bord-no pad-all">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    <footer id="footer">
+
+    <div class="hide-fixed pull-right pad-rgt">Currently v1</div>
+
+
+    <a class="pad-lft" href="http://www.palmgo.cn/">&#0169; 2017 掌行通</a>
+
+
+</footer>
+{% endblock %}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="#">
+
+    <title>客户反馈</title>
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #e7ebee;
+            margin: 0;
+            padding: 0;
+            height: 300px;
+        }
+        .table_info {
+            left: 15%;
+        }
+        .table_header{
+            position: relative;
+            padding-left: 15%;
+            font-size:2.2em ;
+        }
+        a{
+            text-decoration:none;
+            color: black;
+        }
+        textarea{resize: none}
+        .hide{
+            display: none;
+        }
+        #success_info{
+            position: fixed;
+            top:50%;
+            left: 50%;
+            margin-left: -100px;
+
+        }
+    </style>
+</head>
+{% block body %} {% endblock %}
+<body>
+<div id="container" class="effect mainnav-lg">
+    <div class="boxed">
+        <div id="content-container">
+            <div id="page-title">
+                <h1 class="table_header" >掌行通客户反馈</h1>
+                <div id="page-content">
+                    <div class="row">
+
+                        {% block info %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block footer %}{% endblock %}
+
+<script src="/static/jquery-1.12.4.js"></script>
+
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/holder.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var toekn_err = $('#token_error').text();
+        if(toekn_err.length > 0){
+            $('#this').parent().siblings().children().find('#token_error').addClass('hide').empty();
+
+        }else {
+            console.log('无错误');
+        }
+        $('button').click(function () {
+            var info = $('button').parent().siblings().find('#token_error').text();
+            if($('#errors').text()){
+                console.log('----出错了');
+                $('this').parent().find('#errors').addClass('hide');
+                console.log('----去除提示框');
+            }else {
+                console.log('else....');
+            }
+        })
+    });
+
+
+
+</script>
+
+</body>
+</html>
