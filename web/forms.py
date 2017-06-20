@@ -28,6 +28,6 @@ class WorkFrom(Form):
     )
     content = fields.CharField(
         label='反馈内容',
-        widget=widgets.Textarea(attrs={'class':'id_body form-control','placeholder':'故障'}),
+        widget=widgets.Textarea(attrs={'class':'id_body form-control','placeholder':'填写故障内容 或发送邮箱至'}),
 
     )

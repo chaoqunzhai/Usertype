@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'Usertype.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME':'Usertype',
-    'USER': 'user',
-    'PASSWORD': 'user',
-    'HOST': '172.16.30.133',
+    'NAME':'palmgo',
+    'USER': 'zabbix',
+    'PASSWORD': 'zabbix',
+    'HOST': '172.16.30.44',
     'PORT': '3306',
     }
 }

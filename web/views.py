@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse
-from django.views import View
+from django.views.generic import View
 from web import forms
 from web import models
 

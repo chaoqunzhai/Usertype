@@ -45,6 +45,7 @@
             margin-left: -100px;
 
         }
+
     </style>
 </head>
 {% block body %} {% endblock %}
@@ -95,7 +96,18 @@
         });
         $('textarea').next().addClass('hide');
     });
-
+    $(function () {
+        var date = new Date();
+        var y = date.getFullYear();
+        var m =date.getMonth()+1;
+        var d = date.getDate();
+        var h = date.getHours();
+        var minute = date.getMinutes();
+        var s = date.getSeconds();
+        var datetime = y+"-"+m+"-"+d+" "+h+":"+minute+":"+s;
+        console.log(datetime);
+        $('#id_datetime').val(datetime);
+    })
 
 
 </script>
